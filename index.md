@@ -1,4 +1,7 @@
 <style>
+  /* Hide GitHub's default auto-generated header */
+  header { display: none !important; }
+
   /* Complete Visual Reset */
   body { 
     max-width: 850px; 
@@ -77,5 +80,5 @@ Predictive modeling for retention using SHAP explainability.
 </div>
 
 <div class="footer">
-  © 2026 Justin Walker • Built with GitHub Pages
+  © 2026 Justin Walker
 </div>
