@@ -45,7 +45,7 @@
 A high-performance reactive system built with **Java 25**, **Spring Boot WebFlux**, and **Redis**. Designed to handle 10k+ TPS with sub-millisecond AI fraud detection.
 
 <div class="link-row">
-  <a href="http://localhost:8080">🚀 Launch Live Demo (Localhost)</a> <span class="separator">|</span>
+  <a href="http://localhost:8080">🚀 Launch Live Demo</a> <span class="separator">|</span>
   <a href="https://walker-systems.github.io/auction-system/">📚 View Technical Architecture</a> <span class="separator">|</span>
   <a href="https://github.com/walker-systems/auction-system">💻 Explore Source Repository</a>
 </div>
