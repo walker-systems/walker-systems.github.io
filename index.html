@@ -4,85 +4,422 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Justin Walker | Portfolio</title>
+  <meta name="description" content="Portfolio of Justin Walker - backend systems, distributed architecture, machine learning, and data science projects.">
   <style>
-    /* Complete Visual Reset */
-    body {
-      max-width: 850px;
-      margin: 50px auto;
-      padding: 0 25px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.6;
-      color: #c9d1d9;
-      background-color: #0d1117;
+    :root {
+      --bg: #0b0d10;
+      --panel: #12161b;
+      --panel-soft: #0f1317;
+      --text: #e7eaee;
+      --muted: #9aa4af;
+      --border: #232a32;
+      --link: #dfe7ef;
+      --link-hover: #ffffff;
+      --accent: #c8d1db;
+      --max-width: 980px;
+      --radius: 18px;
     }
-    h1, h2, h3 { color: #ffffff; margin-top: 0; font-weight: 600; }
-    h1 { font-size: 2.5em; margin-bottom: 5px; }
-    .tagline { font-size: 1.2em; color: #8b949e; margin-top: 0; margin-bottom: 20px; }
-    
-    /* Section Headers */
-    h2 { border-bottom: 1px solid #30363d; padding-bottom: 10px; margin-top: 50px; margin-bottom: 20px; }
-    h3 { font-size: 1.3em; margin-bottom: 10px; margin-top: 30px; }
-    
-    /* Perfect Link Spacing with Flexbox */
-    a { color: #58a6ff; text-decoration: none; font-weight: 600; }
-    a:hover { text-decoration: underline; }
-    .link-row { display: flex; flex-wrap: wrap; align-items: center; gap: 15px; margin: 15px 0; }
-    .separator { color: #30363d; cursor: default; }
-    .badges { display: flex; gap: 10px; margin-bottom: 40px; }
-    
-    /* Clean Footer */
-    .footer { border-top: 1px solid #30363d; margin-top: 60px; padding-top: 20px; text-align: center; color: #8b949e; font-size: 14px; }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: var(--link);
+      text-decoration: none;
+      transition: color 0.18s ease, opacity 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    a:hover { color: var(--link-hover); }
+
+    .page {
+      width: min(var(--max-width), calc(100% - 40px));
+      margin: 0 auto;
+      padding: 32px 0 72px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 10px 0 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: linear-gradient(180deg, #171c22 0%, #0f1317 100%);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      flex: 0 0 auto;
+      overflow: hidden;
+    }
+
+    .brand-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .brand-copy { min-width: 0; }
+
+    .brand-copy .name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: var(--text);
+    }
+
+    .brand-copy .role {
+      font-size: 0.84rem;
+      color: var(--muted);
+    }
+
+    .top-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 16px;
+      font-size: 0.93rem;
+      color: var(--muted);
+    }
+
+    .top-links a { color: var(--muted); }
+    .top-links a:hover { color: var(--text); }
+
+    .hero { padding: 56px 0 26px; }
+
+    .eyebrow {
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      font-weight: 650;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text);
+      font-size: 0.94rem;
+      font-weight: 500;
+    }
+
+    .button.primary { background: var(--panel); }
+
+    .button:hover {
+      background: #171c22;
+      border-color: #2b3440;
+    }
+
+    .section { margin-top: 56px; }
+
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .section-note {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .project-card {
+      background: linear-gradient(180deg, var(--panel) 0%, var(--panel-soft) 100%);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 22px 20px;
+    }
+
+    .project-card.featured { padding: 28px; }
+
+    .project-kicker {
+      margin: 0 0 10px 0;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .project-title {
+      margin: 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .project-description {
+      margin: 12px 0 0 0;
+      color: var(--muted);
+      max-width: 72ch;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.8rem;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .link-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 18px;
+      margin-top: 18px;
+    }
+
+    .link-list a {
+      color: var(--text);
+      font-size: 0.93rem;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+    }
+
+    .link-list a:hover { border-color: rgba(255, 255, 255, 0.45); }
+
+    .archive-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .archive-item {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .archive-item h3 {
+      margin: 0;
+      font-size: 1.03rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .archive-item p {
+      margin: 8px 0 0 0;
+      color: var(--muted);
+    }
+
+    .footer {
+      margin-top: 64px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.88rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        width: min(var(--max-width), calc(100% - 28px));
+        padding-top: 20px;
+      }
+
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .top-links { justify-content: flex-start; }
+      .hero { padding-top: 38px; }
+      .project-card,
+      .project-card.featured { padding: 20px; }
+      .footer { flex-direction: column; }
+    }
   </style>
 </head>
 <body>
+  <main class="page">
+    <header class="topbar">
+      <div class="brand">
+        <a class="brand-mark" href="https://walker-systems.github.io/" aria-label="Justin Walker Portfolio Home">
+          <!-- Replace the text below with an image if desired -->
+          <!-- Example: <img src="PASTE_LOGO_LINK_HERE" alt="Justin Walker logo"> -->
+          JW
+        </a>
+        <div class="brand-copy">
+          <div class="name">Justin Walker</div>
+          <div class="role">Systems Architecture, Distributed Backend, Applied Machine Learning</div>
+        </div>
+      </div>
 
-  <h1>Justin Walker</h1>
-  <p class="tagline">Systems Architect • AI Engineer • Distributed Backend Specialist</p>
+      <nav class="top-links" aria-label="External links">
+        <a href="https://github.com/walker-systems">GitHub</a>
+        <a href="https://www.linkedin.com/in/justin-walker-0403923b1/">LinkedIn</a>
+        <a href="mailto:justinwalker.contact@gmail.com">Email</a>
+      </nav>
+    </header>
 
-  <div class="badges">
-    <a href="https://github.com/walker-systems"><img src="https://img.shields.io/badge/GitHub-Profile-black?logo=github" alt="GitHub"></a>
-    <a href="https://www.linkedin.com/in/justin-walker-0403923b1/"><img src="https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin" alt="LinkedIn"></a>
-    <a href="mailto:justinwalker.contact@gmail.com"><img src="https://img.shields.io/badge/Email-Contact-red?logo=gmail" alt="Email"></a>
-  </div>
+    <section class="hero">
+      <div class="eyebrow">Selected Work</div>
+      <h1>Backend systems built for concurrency, clarity, and resilience.</h1>
+      <p class="hero-copy">
+        Current work centers on reactive Java services, distributed systems, and practical machine learning.
+      </p>
+      <div class="hero-actions">
+        <a class="button primary" href="https://bidstream.dev">View Bidstream</a>
+        <a class="button" href="https://walker-systems.github.io/auction-system/">Read Documentation</a>
+      </div>
+    </section>
 
-  <h2>🏆 Featured Project: Real-Time Bidding Platform</h2>
-  <p>A high-performance reactive system built with <strong>Java 25</strong>, <strong>Spring Boot WebFlux</strong>, and <strong>Redis</strong>. Designed to handle 10k+ TPS with sub-millisecond AI fraud detection.</p>
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Featured Project</h2>
+      </div>
 
-  <div class="link-row">
-    <a href="http://localhost:8080">🚀 Launch Live Demo (Localhost)</a> <span class="separator">|</span>
-    <a href="https://walker-systems.github.io/auction-system/">📚 View Technical Architecture</a> <span class="separator">|</span>
-    <a href="https://github.com/walker-systems/auction-system">💻 Explore Source Repository</a>
-  </div>
+      <article class="project-card featured">
+        <p class="project-kicker">Reactive bidding platform</p>
+        <h3 class="project-title">Bidstream</h3>
+        <p class="project-description">
+          A distributed auction platform built with Java 25, Spring Boot WebFlux, Redis, Lua, and a separate Python inference service.
+          The system focuses on atomic bid execution, low-latency state updates, asynchronous fraud screening, and live operational visibility.
+        </p>
 
-  <h2>📊 Data Science & Analytics Archive</h2>
-  <p><em>Legacy projects focused on NLP, Forecasting, and Explainable AI.</em></p>
+        <div class="meta-row" aria-label="Technologies used">
+          <span class="meta-pill">Java 25</span>
+          <span class="meta-pill">Spring WebFlux</span>
+          <span class="meta-pill">Redis</span>
+          <span class="meta-pill">Lua</span>
+          <span class="meta-pill">FastAPI</span>
+          <span class="meta-pill">Docker</span>
+        </div>
 
-  <h3>Airline Sentiment Analysis</h3>
-  <p>NLP pipeline for tweet classification with an interactive demo hosted on Render.</p>
-  <div class="link-row">
-    <a href="https://justin-castillo.github.io/twitter-airline-analysis/">🌐 Project Website</a> <span class="separator">|</span>
-    <a href="https://twitter-airline-analysis.onrender.com/">🚀 Live App Demo</a> <span class="separator">|</span>
-    <a href="https://github.com/justin-castillo/twitter-airline-analysis">💻 Source Repository</a>
-  </div>
+        <div class="link-list">
+          <a href="https://bidstream.dev">Public Site</a>
+          <a href="https://walker-systems.github.io/auction-system/">Documentation</a>
+          <a href="https://metrics.bidstream.dev">Metrics</a>
+          <a href="https://github.com/walker-systems/auction-system">Source Repository</a>
+        </div>
+      </article>
+    </section>
 
-  <h3>Rossmann Store Sales Forecasting</h3>
-  <p>Demand forecasting using XGBoost and Time-Series analysis.</p>
-  <div class="link-row">
-    <a href="https://justin-castillo.github.io/rossmann-store-sales/">🌐 Project Website</a> <span class="separator">|</span>
-    <a href="https://public.tableau.com/app/profile/justin.castillo2068/viz/RossmannSalesDashboard/RossmannStoreSalesDashboard">📊 Tableau Dashboard</a> <span class="separator">|</span>
-    <a href="https://github.com/justin-castillo/rossmann-store-sales">💻 Source Repository</a>
-  </div>
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Archive</h2>
+        <div class="section-note">Selected earlier work in NLP, forecasting, and applied modeling.</div>
+      </div>
 
-  <h3>IBM Employee Attrition</h3>
-  <p>Predictive modeling for retention using SHAP explainability.</p>
-  <div class="link-row">
-    <a href="https://justin-castillo.github.io/ibm-employee-attrition/">🌐 Project Website</a> <span class="separator">|</span>
-    <a href="https://github.com/justin-castillo/ibm-employee-attrition">💻 Source Repository</a>
-  </div>
+      <div class="archive-list">
+        <article class="archive-item">
+          <h3>Airline Sentiment Analysis</h3>
+          <p>NLP pipeline for tweet classification with an interactive demo hosted on Render.</p>
+          <div class="link-list">
+            <a href="https://justin-castillo.github.io/twitter-airline-analysis/">Project Website</a>
+            <a href="https://twitter-airline-analysis.onrender.com/">Live App Demo</a>
+            <a href="https://github.com/justin-castillo/twitter-airline-analysis">Source Repository</a>
+          </div>
+        </article>
 
-  <div class="footer">
-    © 2026 Justin Walker • Built with GitHub Pages
-  </div>
+        <article class="archive-item">
+          <h3>Rossmann Store Sales Forecasting</h3>
+          <p>Demand forecasting using XGBoost and time-series analysis.</p>
+          <div class="link-list">
+            <a href="https://justin-castillo.github.io/rossmann-store-sales/">Project Website</a>
+            <a href="https://public.tableau.com/app/profile/justin.castillo2068/viz/RossmannSalesDashboard/RossmannStoreSalesDashboard">Tableau Dashboard</a>
+            <a href="https://github.com/justin-castillo/rossmann-store-sales">Source Repository</a>
+          </div>
+        </article>
 
+        <article class="archive-item">
+          <h3>IBM Employee Attrition</h3>
+          <p>Predictive modeling for retention using SHAP-based explainability.</p>
+          <div class="link-list">
+            <a href="https://justin-castillo.github.io/ibm-employee-attrition/">Project Website</a>
+            <a href="https://github.com/justin-castillo/ibm-employee-attrition">Source Repository</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© 2026 Justin Walker</div>
+      <div>Built for GitHub Pages</div>
+    </footer>
+  </main>
 </body>
 </html>
