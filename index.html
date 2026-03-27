@@ -36,7 +36,7 @@
     a {
       color: var(--link);
       text-decoration: none;
-      transition: color 0.18s ease, opacity 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+      transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
     }
 
     a:hover { color: var(--link-hover); }
@@ -106,66 +106,18 @@
       justify-content: flex-end;
       gap: 16px;
       font-size: 0.93rem;
-      color: var(--muted);
     }
 
     .top-links a { color: var(--muted); }
     .top-links a:hover { color: var(--text); }
 
-    .hero { padding: 56px 0 26px; }
-
-    .eyebrow {
-      font-size: 0.74rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      margin-bottom: 16px;
+    .section {
+      margin-top: 56px;
     }
 
-    h1 {
-      margin: 0;
-      font-size: clamp(2.1rem, 5vw, 3.4rem);
-      line-height: 1.08;
-      letter-spacing: -0.03em;
-      font-weight: 650;
-      max-width: 11ch;
+    .section.section-first {
+      margin-top: 34px;
     }
-
-    .hero-copy {
-      max-width: 680px;
-      margin-top: 18px;
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 11px 16px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      background: transparent;
-      color: var(--text);
-      font-size: 0.94rem;
-      font-weight: 500;
-    }
-
-    .button.primary { background: var(--panel); }
-
-    .button:hover {
-      background: #171c22;
-      border-color: #2b3440;
-    }
-
-    .section { margin-top: 56px; }
 
     .section-header {
       display: flex;
@@ -196,7 +148,9 @@
       padding: 22px 22px 20px;
     }
 
-    .project-card.featured { padding: 28px; }
+    .project-card.featured {
+      padding: 28px;
+    }
 
     .project-kicker {
       margin: 0 0 10px 0;
@@ -272,7 +226,9 @@
       padding-bottom: 1px;
     }
 
-    .link-list a:hover { border-color: rgba(255, 255, 255, 0.45); }
+    .link-list a:hover {
+      border-bottom-color: rgba(255, 255, 255, 0.45);
+    }
 
     .archive-list {
       display: grid;
@@ -314,11 +270,18 @@
         flex-direction: column;
       }
 
-      .top-links { justify-content: flex-start; }
-      .hero { padding-top: 38px; }
+      .top-links {
+        justify-content: flex-start;
+      }
+
       .project-card,
-      .project-card.featured { padding: 20px; }
-      .footer { flex-direction: column; }
+      .project-card.featured {
+        padding: 20px;
+      }
+
+      .footer {
+        flex-direction: column;
+      }
     }
   </style>
 </head>
@@ -333,7 +296,7 @@
         </a>
         <div class="brand-copy">
           <div class="name">Justin Walker</div>
-          <div class="role">Systems Architecture, Distributed Backend, Applied Machine Learning</div>
+          <div class="role">Java backend, distributed systems, and applied machine learning</div>
         </div>
       </div>
 
@@ -344,25 +307,18 @@
       </nav>
     </header>
 
-    <div class="eyebrow">Selected Work</div>
-    <h1>Java backend and distributed systems projects.</h1>
-    <p class="hero-copy">
-      Current work centers on reactive services, Redis-backed coordination, and practical machine learning integration.
-    </p>
-
-    <section class="section">
+    <section class="section section-first">
       <div class="section-header">
-        <h2 class="section-title">Featured Project</h2>
+        <h1 class="section-title">Featured Project</h1>
       </div>
 
       <article class="project-card featured">
         <p class="project-kicker">Reactive bidding platform</p>
-        <h3 class="project-title">
+        <h2 class="project-title">
           <a href="https://bidstream.dev">Bidstream</a>
-        </h3>
+        </h2>
         <p class="project-description">
-          A distributed auction platform built with Java 25, Spring Boot WebFlux, Redis, Lua, and a separate Python inference service.
-          The system focuses on atomic bid execution, low-latency state updates, asynchronous fraud screening, and live operational visibility.
+          A distributed auction platform built with Java 25, Spring Boot WebFlux, Redis, Lua, and a separate Python ML inference service for real-time fraud detection. The system focuses on atomic bid execution, low-latency state updates, asynchronous fraud scoring, and live operational visibility.
         </p>
 
         <div class="meta-row" aria-label="Technologies used">
@@ -386,7 +342,7 @@
     <section class="section">
       <div class="section-header">
         <h2 class="section-title">Archive</h2>
-        <div class="section-note">Selected earlier work in NLP, forecasting, and applied modeling.</div>
+        <div class="section-note">Earlier work in NLP, forecasting, and applied modeling</div>
       </div>
 
       <div class="archive-list">
