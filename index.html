@@ -111,6 +111,22 @@
     .top-links a { color: var(--muted); }
     .top-links a:hover { color: var(--text); }
 
+    .top-link-button {
+      appearance: none;
+      background: none;
+      border: 0;
+      padding: 0;
+      margin: 0;
+      color: var(--muted);
+      font: inherit;
+      cursor: pointer;
+      line-height: inherit;
+    }
+
+    .top-link-button:hover {
+      color: var(--text);
+    }
+
     .section {
       margin-top: 56px;
     }
@@ -124,8 +140,8 @@
       align-items: end;
       justify-content: space-between;
       gap: 20px;
-      margin-bottom: 14px;
-      padding-bottom: 0;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
     }
 
     .section-title {
@@ -302,7 +318,9 @@
       <nav class="top-links" aria-label="External links">
         <a href="https://github.com/walker-systems">GitHub</a>
         <a href="https://www.linkedin.com/in/justin-walker-0403923b1/">LinkedIn</a>
-        <a href="mailto:justinwalker.contact@gmail.com">Email</a>
+        <button class="top-link-button" id="copy-email-btn" type="button" data-email="justinwalker.contact@gmail.com">
+          Email
+        </button>
       </nav>
     </header>
 
@@ -317,8 +335,16 @@
           <a href="https://bidstream.dev">Bidstream</a>
         </h2>
         <p class="project-description">
-          A distributed auction platform built with Java 25, Spring Boot WebFlux, Redis, Lua, and a separate Python ML inference service for real-time fraud detection. The system focuses on atomic bid execution, low-latency state updates, asynchronous fraud scoring, and live operational visibility.
+          A distributed auction platform built with Java 25, Spring Boot WebFlux, Redis, Lua, and a separate Python ML inference service for real-time fraud detection.
+          The system focuses on atomic bid execution, low-latency state updates, asynchronous fraud scoring, and live operational visibility.
         </p>
+
+        <div class="link-list">
+          <a href="https://bidstream.dev">Public Site</a>
+          <a href="https://walker-systems.github.io/auction-system/">Documentation</a>
+          <a href="https://metrics.bidstream.dev">Metrics</a>
+          <a href="https://github.com/walker-systems/auction-system">Source Repository</a>
+        </div>
 
         <div class="meta-row" aria-label="Technologies used">
           <span class="meta-pill">Java 25</span>
@@ -327,13 +353,6 @@
           <span class="meta-pill">Lua</span>
           <span class="meta-pill">FastAPI</span>
           <span class="meta-pill">Docker</span>
-        </div>
-
-        <div class="link-list">
-          <a href="https://bidstream.dev">Public Site</a>
-          <a href="https://walker-systems.github.io/auction-system/">Documentation</a>
-          <a href="https://metrics.bidstream.dev">Metrics</a>
-          <a href="https://github.com/walker-systems/auction-system">Source Repository</a>
         </div>
       </article>
     </section>
@@ -387,5 +406,40 @@
       <div>Built for GitHub Pages</div>
     </footer>
   </main>
+
+  <script>
+    (function () {
+      const copyButton = document.getElementById("copy-email-btn");
+      if (!copyButton) return;
+
+      const originalText = copyButton.textContent.trim();
+      const email = copyButton.dataset.email;
+
+      async function copyEmail() {
+        try {
+          await navigator.clipboard.writeText(email);
+          copyButton.textContent = "Email copied to clipboard";
+        } catch (error) {
+          const textarea = document.createElement("textarea");
+          textarea.value = email;
+          textarea.setAttribute("readonly", "");
+          textarea.style.position = "absolute";
+          textarea.style.left = "-9999px";
+          document.body.appendChild(textarea);
+          textarea.select();
+          document.execCommand("copy");
+          document.body.removeChild(textarea);
+          copyButton.textContent = "Email copied to clipboard";
+        }
+
+        clearTimeout(copyButton._resetTimer);
+        copyButton._resetTimer = setTimeout(() => {
+          copyButton.textContent = originalText;
+        }, 1800);
+      }
+
+      copyButton.addEventListener("click", copyEmail);
+    })();
+  </script>
 </body>
 </html>
