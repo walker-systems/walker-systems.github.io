@@ -209,6 +209,21 @@
       max-width: 72ch;
     }
 
+    .project-description code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.86em;
+      color: var(--accent);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1px 5px;
+      white-space: nowrap;
+    }
+
+    .project-card + .project-card {
+      margin-top: 18px;
+    }
+
     .meta-row {
       display: flex;
       flex-wrap: wrap;
@@ -243,6 +258,31 @@
 
     .link-list a:hover {
       border-bottom-color: rgba(255, 255, 255, 0.45);
+    }
+
+    .archive-details summary.archive-toggle {
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+    }
+
+    .archive-details summary.archive-toggle::-webkit-details-marker {
+      display: none;
+    }
+
+    .archive-chevron {
+      display: inline-block;
+      color: var(--muted);
+      font-size: 0.9em;
+      transition: transform 0.18s ease;
+    }
+
+    .archive-details[open] .archive-chevron {
+      transform: rotate(90deg);
+    }
+
+    .archive-toggle:hover .section-title {
+      color: var(--link-hover);
     }
 
     .archive-list {
@@ -326,8 +366,38 @@
 
     <section class="section section-first">
       <div class="section-header">
-        <h1 class="section-title">Featured Project</h1>
+        <h1 class="section-title">Featured Projects</h1>
       </div>
+
+      <article class="project-card featured">
+        <p class="project-kicker">Distributed job orchestration</p>
+        <h2 class="project-title">
+          <a href="https://control-plane.dev">Control Plane</a>
+        </h2>
+        <p class="project-description">
+          A job orchestration platform: Postgres-backed queue with priorities, retries, cron schedules,
+          lease-based crash recovery, and a live operations UI. Jobs are claimed with
+          <code>FOR UPDATE SKIP LOCKED</code> so any number of workers can pull from the same queue
+          without coordination; a watchdog reclaims work lost mid-flight. Deployed continuously —
+          every merge ships to the live site.
+        </p>
+
+        <div class="link-list">
+          <a href="https://control-plane.dev">Live Demo</a>
+          <a href="https://walker-systems.github.io/control-plane/">Documentation</a>
+          <a href="https://github.com/walker-systems/control-plane">Source Repository</a>
+        </div>
+
+        <div class="meta-row" aria-label="Technologies used">
+          <span class="meta-pill">Java 25</span>
+          <span class="meta-pill">Spring Boot</span>
+          <span class="meta-pill">PostgreSQL</span>
+          <span class="meta-pill">React</span>
+          <span class="meta-pill">TypeScript</span>
+          <span class="meta-pill">Docker</span>
+          <span class="meta-pill">Caddy</span>
+        </div>
+      </article>
 
       <article class="project-card featured">
         <p class="project-kicker">Reactive bidding platform</p>
@@ -358,12 +428,13 @@
     </section>
 
     <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">Archive</h2>
-        <div class="section-note">Earlier work in NLP, forecasting, and applied modeling</div>
-      </div>
+      <details class="archive-details">
+        <summary class="section-header archive-toggle">
+          <h2 class="section-title"><span class="archive-chevron" aria-hidden="true">▸</span> Archive</h2>
+          <div class="section-note">Earlier work in NLP, forecasting, and applied modeling</div>
+        </summary>
 
-      <div class="archive-list">
+        <div class="archive-list">
         <article class="archive-item">
           <h3>
             <a href="https://twitter-airline-analysis.onrender.com/">Airline Sentiment Analysis</a>
@@ -398,7 +469,8 @@
             <a href="https://github.com/justin-castillo/ibm-employee-attrition">Source Repository</a>
           </div>
         </article>
-      </div>
+        </div>
+      </details>
     </section>
 
     <footer class="footer">
